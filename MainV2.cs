@@ -814,7 +814,13 @@ namespace MissionPlanner
 
             // save config to test we have write access
             xmlconfig(true);
+
+
+            //---------------phisten #20160115 add socket form
+            socketForm = new TargetPosSocketForm();
+            socketForm.Show();
         }
+        TargetPosSocketForm socketForm;
 
         void SystemEvents_PowerModeChanged(object sender, Microsoft.Win32.PowerModeChangedEventArgs e)
         {

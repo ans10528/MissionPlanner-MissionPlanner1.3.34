@@ -59,6 +59,7 @@
             this.myButton2 = new MissionPlanner.Controls.MyButton();
             this.myButton3 = new MissionPlanner.Controls.MyButton();
             this.tabPagePreFlight = new System.Windows.Forms.TabPage();
+            this.checkListControl1 = new MissionPlanner.Controls.PreFlight.CheckListControl();
             this.tabGauges = new System.Windows.Forms.TabPage();
             this.Gvspeed = new AGaugeApp.AGauge();
             this.bindingSourceGaugesTab = new System.Windows.Forms.BindingSource(this.components);
@@ -149,7 +150,8 @@
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Messagetabtimer = new System.Windows.Forms.Timer(this.components);
             this.bindingSourceStatusTab = new System.Windows.Forms.BindingSource(this.components);
-            this.checkListControl1 = new MissionPlanner.Controls.PreFlight.CheckListControl();
+            this.影像導引圍籬P1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.影像導引圍籬P2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.MainH)).BeginInit();
             this.MainH.Panel1.SuspendLayout();
             this.MainH.Panel2.SuspendLayout();
@@ -720,6 +722,11 @@
             resources.ApplyResources(this.tabPagePreFlight, "tabPagePreFlight");
             this.tabPagePreFlight.Name = "tabPagePreFlight";
             this.tabPagePreFlight.UseVisualStyleBackColor = true;
+            // 
+            // checkListControl1
+            // 
+            resources.ApplyResources(this.checkListControl1, "checkListControl1");
+            this.checkListControl1.Name = "checkListControl1";
             // 
             // tabGauges
             // 
@@ -1568,7 +1575,9 @@
             this.triggerCameraToolStripMenuItem,
             this.flightPlannerToolStripMenuItem,
             this.setHomeHereToolStripMenuItem,
-            this.takeOffToolStripMenuItem});
+            this.takeOffToolStripMenuItem,
+            this.影像導引圍籬P1ToolStripMenuItem,
+            this.影像導引圍籬P2ToolStripMenuItem});
             this.contextMenuStripMap.Name = "contextMenuStrip1";
             resources.ApplyResources(this.contextMenuStripMap, "contextMenuStripMap");
             // 
@@ -1648,7 +1657,7 @@
             this.windDir1.BackColor = System.Drawing.Color.Transparent;
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Direction", this.bindingSource1, "wind_dir", true, System.Windows.Forms.DataSourceUpdateMode.Never));
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Speed", this.bindingSource1, "wind_vel", true, System.Windows.Forms.DataSourceUpdateMode.Never));
-            this.windDir1.Direction = 360D;
+            this.windDir1.Direction = 180D;
             resources.ApplyResources(this.windDir1, "windDir1");
             this.windDir1.Name = "windDir1";
             this.windDir1.Speed = 0D;
@@ -1858,17 +1867,22 @@
             // 
             this.bindingSourceStatusTab.DataSource = typeof(MissionPlanner.CurrentState);
             // 
-            // checkListControl1
+            // 影像導引圍籬P1ToolStripMenuItem
             // 
-            resources.ApplyResources(this.checkListControl1, "checkListControl1");
-            this.checkListControl1.Name = "checkListControl1";
+            this.影像導引圍籬P1ToolStripMenuItem.Name = "影像導引圍籬P1ToolStripMenuItem";
+            resources.ApplyResources(this.影像導引圍籬P1ToolStripMenuItem, "影像導引圍籬P1ToolStripMenuItem");
+            // 
+            // 影像導引圍籬P2ToolStripMenuItem
+            // 
+            this.影像導引圍籬P2ToolStripMenuItem.Name = "影像導引圍籬P2ToolStripMenuItem";
+            resources.ApplyResources(this.影像導引圍籬P2ToolStripMenuItem, "影像導引圍籬P2ToolStripMenuItem");
             // 
             // FlightData
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.MainH);
-            this.MinimumSize = new System.Drawing.Size(1008, 462);
+            this.MinimumSize = new System.Drawing.Size(1008, 426);
             this.Name = "FlightData";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FlightData_FormClosing);
             this.Load += new System.EventHandler(this.FlightData_Load);
@@ -2067,6 +2081,8 @@
         private Controls.MyButton BUT_resumemis;
         private System.Windows.Forms.TabPage tabPagePreFlight;
         private Controls.PreFlight.CheckListControl checkListControl1;
+        private System.Windows.Forms.ToolStripMenuItem 影像導引圍籬P1ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 影像導引圍籬P2ToolStripMenuItem;
 
     }
 }

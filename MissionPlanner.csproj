@@ -646,6 +646,13 @@
       <DependentUpon>FollowPathControl.cs</DependentUpon>
     </Compile>
     <Compile Include="System.cs" />
+    <Compile Include="TargetPosSocket.cs" />
+    <Compile Include="TargetPosSocketForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TargetPosSocketForm.Designer.cs">
+      <DependentUpon>TargetPosSocketForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utilities\Airports.cs" />
     <Compile Include="Utilities\AP_GPS_GSOF.cs" />
     <Compile Include="Utilities\AP_GPS_SBF.cs" />
@@ -1299,6 +1306,9 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Strings.zh-Hans.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TargetPosSocketForm.resx">
+      <DependentUpon>TargetPosSocketForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\DroneApi\UI\VehicleSelection.resx">
       <DependentUpon>VehicleSelection.cs</DependentUpon>
