@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 
 namespace MissionPlanner
 {
@@ -11,7 +13,15 @@ namespace MissionPlanner
     {
 
         Socket TargetPosSock;
-        IPEndPoint RemoteIPEndPoint;
+        public IPEndPoint RemoteIPEndPoint;
+        public int RemotePort = 3155;
+
+        public int Updating = 0;
+        public int HasNewPos = 0;
+        public int TargetPosX=0;
+        public int TargetPosY=0;
+
+        
         public TargetPosSocket()
         {
 
@@ -21,8 +31,16 @@ namespace MissionPlanner
 
 
 
-        internal void Run(object obj)
+        public void Run(Object obj)
         {
+            if (IsRun)
+            { 
+                Debug.WriteLine("重複執行 TargetPosSocket");
+                return;
+            }
+            IsRun = true;
+
+
             //將IP位址和Port宣告為服務的連接點(所有網路介面卡 IP, Port)
             IPEndPoint ipont = new IPEndPoint(IPAddress.Any, 3156);
 
@@ -48,79 +66,50 @@ namespace MissionPlanner
 
 
             #region 標頭與資料內容
-            byte[] data = new byte[0];
 
-            byte[] data_Len = new byte[4] { 0, 0, 0, 0 };
 
-            int len = 0;
+            byte[] data_PosX = new byte[4] { 0, 0, 0, 0 };
+            byte[] data_PosY = new byte[4] { 0, 0, 0, 0 };
+            byte[] requestPost = new byte[] { 5 };
+
             #endregion
 
 
             //循環接收資料
-            while (isRun)
+            while (IsRun)
             {
-
+                int dataLen = 0;
                 try
                 {
-                    #region 嘗試從客戶端接收資料，要是從伺服端強制關閉客戶端會造成以下物件錯誤
-                    TryCount = 0;
-                    TargetPosSock.Receive(data_Len);
-
-                    len = data_Len[0] << 24 | data_Len[1] << 16 | data_Len[2] << 8 | data_Len[3];
-                    if (len > 10485760 || len < 0) //if  > 10MB 
-                    {
-                        Console.WriteLine("ErrorDetect: len=" + len);
-                        Close();
-                        return;
-                    }
-                    data = new byte[len];
-
-                    int get = TargetPosSock.Receive(data);
-
-                    //如果接收不完全
-                    if (get != len)
-                    {
-                        int StartIndex = get;
-                        int EndIndex = len - get;
-                        //不斷等待進行接收
-                        while (StartIndex != len)
-                        {
-                            byte[] tmpAcceptData = new byte[EndIndex];
-                            get = TargetPosSock.Receive(tmpAcceptData);
-                            Array.ConstrainedCopy(tmpAcceptData, 0, data, StartIndex, get);
-                            StartIndex += get;
-                            EndIndex -= get;
-                            if (get == 0)
-                            {
-                                ++TryCount;
-                                if (TryCount > 100)
-                                {
-                                    msg += "Client斷線，或接收逾時";
-                                    Close();
-                                    return;
-                                }
-                            }
-                        }
-                    }
+                    //請求送出目標資訊
+                    TargetPosSock.Send(requestPost);
 
 
-                    //回傳接收完成的訊息
-                    //client.Send(new byte[1] { 0 });
-                    TargetPosSock.Send(new byte[1] { 3 });
+                    dataLen = TargetPosSock.Receive(data_PosY);
+                    dataLen += TargetPosSock.Receive(data_PosX);
+                    int PosX = data_PosX[0] << 24 | data_PosX[1] << 16 | data_PosX[2] << 8 | data_PosX[3];
+                    int PosY = data_PosY[0] << 24 | data_PosY[1] << 16 | data_PosY[2] << 8 | data_PosY[3];
+
+
+                    //update TargetPos
+                    Updating = 1;
+                    TargetPosX = PosX;
+                    TargetPosY = PosY;
+                    HasNewPos = 1;
+                    Updating = 0;
                 }
                 catch (Exception e)
                 {
                     msg += "Client斷線(" + e.Message;
-                    Console.WriteLine("ErrorDetect: Client斷線:" + e.Message);
+                    Debug.WriteLine("ErrorDetect: Client斷線:" + e.Message);
 
                     Close();
                     return;
                 }
 
-                    #endregion
 
                 #region 當客戶端主動關閉時，收不到資訊
-                if (data.Length == 0)
+                if (dataLen == 0)
                 {
                     msg += "Server斷線";
                     Close();
@@ -128,13 +117,13 @@ namespace MissionPlanner
                 }
                 #endregion
 
-                //座標與時間接收完畢  將資訊存入公共變數
+                //Thread.Sleep(100);
             }
         }
 
         public void Close()
         {
-            isRun = false;
+            IsRun = false;
 
             if (TargetPosSock != null)
             {
@@ -146,17 +135,31 @@ namespace MissionPlanner
             if (msg != "")
             {
                 //MessageBox.Show(msg);
-                Console.WriteLine(msg);
+                Debug.WriteLine(msg);
                 msg = "";
             }
         }
 
-        internal void SetIpEndPoint(string p1, string p2)
+        internal int SetIpEndPoint(string IP, string Port)
         {
-            throw new NotImplementedException();
+            try
+            {
+                //設定目標IP
+                byte[] ipAddr;// = new byte[4];
+                String RemoteIP = IP;
+                ipAddr = RemoteIP.Split('.').Select<String, byte>(x => byte.Parse(x)).ToArray<byte>();
+                this.RemotePort = int.Parse(Port);
+                this.RemoteIPEndPoint = new IPEndPoint(new IPAddress(ipAddr), RemotePort);
+                return 0;
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("IP或Port無效");
+                return 1;
+            }
         }
-        public bool isRun { get; set; }
-
         public string msg { get; set; }
+
+        public bool IsRun { get; set; }
     }
 }
