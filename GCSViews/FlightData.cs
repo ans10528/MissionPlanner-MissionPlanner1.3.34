@@ -1843,7 +1843,7 @@ namespace MissionPlanner.GCSViews
             }
         }
 
-        private void goHereToolStripMenuItem_Click(object sender, EventArgs e)
+        private void goHereToolStripMenuItem_Click(object sender, EventArgs e) //#
         {
             if (!MainV2.comPort.BaseStream.IsOpen)
             {
@@ -3041,7 +3041,7 @@ namespace MissionPlanner.GCSViews
 
         private void flyToHereAltToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string alt = "100";
+            string alt = "10";
 
             if (MainV2.comPort.MAV.cs.firmware == MainV2.Firmwares.ArduCopter2)
             {

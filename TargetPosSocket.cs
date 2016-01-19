@@ -20,6 +20,7 @@ namespace MissionPlanner
         public int HasNewPos = 0;
         public int TargetPosX=0;
         public int TargetPosY=0;
+        public bool TargetIsInside = false;
 
         
         public TargetPosSocket()

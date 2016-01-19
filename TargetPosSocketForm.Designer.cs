@@ -81,7 +81,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 83);
+            this.label1.Location = new System.Drawing.Point(408, 212);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(108, 12);
             this.label1.TabIndex = 3;
@@ -89,7 +89,7 @@
             // 
             // textBox_CameraAngle
             // 
-            this.textBox_CameraAngle.Location = new System.Drawing.Point(93, 136);
+            this.textBox_CameraAngle.Location = new System.Drawing.Point(475, 87);
             this.textBox_CameraAngle.Name = "textBox_CameraAngle";
             this.textBox_CameraAngle.Size = new System.Drawing.Size(100, 22);
             this.textBox_CameraAngle.TabIndex = 4;
@@ -97,7 +97,7 @@
             // 
             // textBox_MavHeight
             // 
-            this.textBox_MavHeight.Location = new System.Drawing.Point(93, 164);
+            this.textBox_MavHeight.Location = new System.Drawing.Point(475, 115);
             this.textBox_MavHeight.Name = "textBox_MavHeight";
             this.textBox_MavHeight.Size = new System.Drawing.Size(100, 22);
             this.textBox_MavHeight.TabIndex = 5;
@@ -105,22 +105,23 @@
             // 
             // textBox_OutputDiffDistance
             // 
-            this.textBox_OutputDiffDistance.Location = new System.Drawing.Point(131, 288);
+            this.textBox_OutputDiffDistance.Location = new System.Drawing.Point(513, 171);
             this.textBox_OutputDiffDistance.Name = "textBox_OutputDiffDistance";
             this.textBox_OutputDiffDistance.Size = new System.Drawing.Size(94, 22);
             this.textBox_OutputDiffDistance.TabIndex = 6;
             // 
             // textBox_InputGroundDistance
             // 
-            this.textBox_InputGroundDistance.Location = new System.Drawing.Point(131, 260);
+            this.textBox_InputGroundDistance.Location = new System.Drawing.Point(513, 143);
             this.textBox_InputGroundDistance.Name = "textBox_InputGroundDistance";
             this.textBox_InputGroundDistance.Size = new System.Drawing.Size(94, 22);
             this.textBox_InputGroundDistance.TabIndex = 7;
+            this.textBox_InputGroundDistance.Text = "10";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(28, 111);
+            this.label2.Location = new System.Drawing.Point(408, 240);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(116, 12);
             this.label2.TabIndex = 3;
@@ -128,14 +129,14 @@
             // 
             // textBox_TargetDirectDistance
             // 
-            this.textBox_TargetDirectDistance.Location = new System.Drawing.Point(156, 80);
+            this.textBox_TargetDirectDistance.Location = new System.Drawing.Point(536, 209);
             this.textBox_TargetDirectDistance.Name = "textBox_TargetDirectDistance";
             this.textBox_TargetDirectDistance.Size = new System.Drawing.Size(100, 22);
             this.textBox_TargetDirectDistance.TabIndex = 8;
             // 
             // textBox_TargetGroundDistance
             // 
-            this.textBox_TargetGroundDistance.Location = new System.Drawing.Point(156, 108);
+            this.textBox_TargetGroundDistance.Location = new System.Drawing.Point(536, 237);
             this.textBox_TargetGroundDistance.Name = "textBox_TargetGroundDistance";
             this.textBox_TargetGroundDistance.Size = new System.Drawing.Size(100, 22);
             this.textBox_TargetGroundDistance.TabIndex = 8;
@@ -143,7 +144,9 @@
             // checkBox_AllowMoveMAV
             // 
             this.checkBox_AllowMoveMAV.AutoSize = true;
-            this.checkBox_AllowMoveMAV.Location = new System.Drawing.Point(247, 349);
+            this.checkBox_AllowMoveMAV.Checked = true;
+            this.checkBox_AllowMoveMAV.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_AllowMoveMAV.Location = new System.Drawing.Point(33, 345);
             this.checkBox_AllowMoveMAV.Name = "checkBox_AllowMoveMAV";
             this.checkBox_AllowMoveMAV.Size = new System.Drawing.Size(105, 16);
             this.checkBox_AllowMoveMAV.TabIndex = 9;
@@ -153,7 +156,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(28, 139);
+            this.label3.Location = new System.Drawing.Point(410, 90);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 12);
             this.label3.TabIndex = 10;
@@ -162,7 +165,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(28, 167);
+            this.label4.Location = new System.Drawing.Point(410, 118);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 12);
             this.label4.TabIndex = 10;
@@ -171,7 +174,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(29, 263);
+            this.label5.Location = new System.Drawing.Point(411, 146);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(77, 12);
             this.label5.TabIndex = 10;
@@ -180,7 +183,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(28, 292);
+            this.label6.Location = new System.Drawing.Point(410, 175);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(89, 12);
             this.label6.TabIndex = 10;
@@ -188,16 +191,16 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(131, 323);
+            this.textBox3.Location = new System.Drawing.Point(131, 302);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(94, 22);
             this.textBox3.TabIndex = 11;
-            this.textBox3.Text = "1000";
+            this.textBox3.Text = "250";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(29, 326);
+            this.label7.Location = new System.Drawing.Point(29, 305);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(77, 12);
             this.label7.TabIndex = 12;
@@ -205,7 +208,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(247, 312);
+            this.button2.Location = new System.Drawing.Point(146, 339);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(104, 26);
             this.button2.TabIndex = 13;
@@ -219,7 +222,7 @@
             // 
             // textBox_Debug
             // 
-            this.textBox_Debug.Location = new System.Drawing.Point(274, 80);
+            this.textBox_Debug.Location = new System.Drawing.Point(31, 75);
             this.textBox_Debug.Multiline = true;
             this.textBox_Debug.Name = "textBox_Debug";
             this.textBox_Debug.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -230,7 +233,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(633, 387);
+            this.ClientSize = new System.Drawing.Size(400, 387);
             this.Controls.Add(this.textBox_Debug);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label7);
