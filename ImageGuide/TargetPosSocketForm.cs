@@ -123,7 +123,7 @@ namespace MissionPlanner
                         if (checkBox_AllowMoveMAV.Checked)
                         {
                             //計算目標距離
-
+                            //MainV2.comPort.MAV.
                             //計算目標GPS
 
                             //設定拍攝點

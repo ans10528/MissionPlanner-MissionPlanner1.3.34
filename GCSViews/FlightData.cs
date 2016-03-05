@@ -1845,12 +1845,14 @@ namespace MissionPlanner.GCSViews
 
         private void goHereToolStripMenuItem_Click(object sender, EventArgs e) //#
         {
+            //檢查載具是否在線
             if (!MainV2.comPort.BaseStream.IsOpen)
             {
                 CustomMessageBox.Show(Strings.PleaseConnect, Strings.ERROR);
                 return;
             }
 
+            //若目前不是指導模式則切換並設定載具飛行時的高度
             if (MainV2.comPort.MAV.GuidedMode.z == 0)
             {
                 flyToHereAltToolStripMenuItem_Click(null, null);
@@ -3798,6 +3800,11 @@ namespace MissionPlanner.GCSViews
             Vibration frm = new Vibration();
             frm.TopMost = true;
             frm.Show();
+        }
+
+        private void coords1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -1,0 +1,131 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace MissionPlanner
+{
+    class Class1
+    {
+        void gkh_KeyUp(object sender, KeyEventArgs e)
+        {
+
+            if (e.KeyCode == (Keys)System.Enum.Parse(typeof(Keys), rollLeftBox.Text, true))
+            {
+                MainV2.comPort.MAV.cs.rcoverridech1 = checkChannel(1, "trim");
+            }
+            if (e.KeyCode == (Keys)System.Enum.Parse(typeof(Keys), rollRightBox.Text, true))
+            {
+                MainV2.comPort.MAV.cs.rcoverridech1 = checkChannel(1, "trim");
+            }
+            if (e.KeyCode == (Keys)System.Enum.Parse(typeof(Keys), pitchForwardBox.Text, true))
+            {
+                MainV2.comPort.MAV.cs.rcoverridech2 = checkChannel(2, "trim");
+            }
+            if (e.KeyCode == (Keys)System.Enum.Parse(typeof(Keys), pitchBackwardBox.Text, true))
+            {
+                MainV2.comPort.MAV.cs.rcoverridech2 = checkChannel(2, "trim");
+            }
+            if (e.KeyCode == (Keys)System.Enum.Parse(typeof(Keys), steerLeftBox.Text, true))
+            {
+                MainV2.comPort.MAV.cs.rcoverridech4 = checkChannel(4, "trim");
+            }
+            if (e.KeyCode == (Keys)System.Enum.Parse(typeof(Keys), steerRightBox.Text, true))
+            {
+                MainV2.comPort.MAV.cs.rcoverridech4 = checkChannel(4, "trim");
+            }
+
+        }
+
+        void gkh_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == (Keys)System.Enum.Parse(typeof(Keys), armBox.Text, true))
+            {
+                MainV2.instance.BeginInvoke((System.Windows.Forms.MethodInvoker)delegate()
+                {
+                    try
+                    {
+                        MainV2.comPort.doARM(true);
+                    }
+                    catch { CustomMessageBox.Show("Failed to Arm"); }
+                });
+            }
+            if (e.KeyCode == (Keys)System.Enum.Parse(typeof(Keys), desarmBox.Text, true))
+            {
+                MainV2.instance.BeginInvoke((System.Windows.Forms.MethodInvoker)delegate()
+                {
+                    try
+                    {
+                        MainV2.comPort.doARM(false);
+                    }
+                    catch { CustomMessageBox.Show("Failed to Disarm"); }
+                });
+            }
+            if (e.KeyCode == (Keys)System.Enum.Parse(typeof(Keys), setModeBox.Text, true))
+            {
+                MainV2.instance.BeginInvoke((System.Windows.Forms.MethodInvoker)delegate()
+                {
+                    try
+                    {
+                        MainV2.comPort.setMode(setModeComboBox.Text.ToString());
+                    }
+                    catch { CustomMessageBox.Show("Failed to change Modes"); }
+                });
+            }
+            if (e.KeyCode == (Keys)System.Enum.Parse(typeof(Keys), rollLeftBox.Text, true))
+            {
+                if (Control.ModifierKeys == Keys.Control)
+                    MainV2.comPort.MAV.cs.rcoverridech1 = checkChannel(1, "min");
+                else
+                    MainV2.comPort.MAV.cs.rcoverridech1 = (ushort)(checkChannel(1, "trim") - Convert.ToUInt16(rollTrackBar.Value));
+            }
+            if (e.KeyCode == (Keys)System.Enum.Parse(typeof(Keys), rollRightBox.Text, true))
+            {
+                if (Control.ModifierKeys == Keys.Control)
+                    MainV2.comPort.MAV.cs.rcoverridech1 = checkChannel(1, "max");
+                else
+                    MainV2.comPort.MAV.cs.rcoverridech1 = (ushort)(checkChannel(1, "trim") + Convert.ToUInt16(rollTrackBar.Value));
+            }
+            if (e.KeyCode == (Keys)System.Enum.Parse(typeof(Keys), pitchForwardBox.Text, true))
+            {
+                if (Control.ModifierKeys == Keys.Control)
+                    MainV2.comPort.MAV.cs.rcoverridech2 = checkChannel(2, "min");
+                else
+                    MainV2.comPort.MAV.cs.rcoverridech2 = (ushort)(checkChannel(2, "trim") - Convert.ToUInt16(pitchTrackBar.Value));
+            }
+            if (e.KeyCode == (Keys)System.Enum.Parse(typeof(Keys), pitchBackwardBox.Text, true))
+            {
+                if (Control.ModifierKeys == Keys.Control)
+                    MainV2.comPort.MAV.cs.rcoverridech2 = checkChannel(2, "max");
+                else
+                    MainV2.comPort.MAV.cs.rcoverridech2 = (ushort)(checkChannel(2, "trim") + Convert.ToUInt16(pitchTrackBar.Value));
+            }
+            if (e.KeyCode == (Keys)System.Enum.Parse(typeof(Keys), accelerateBox.Text, true))
+            {
+                if (MainV2.comPort.MAV.cs.rcoverridech3 < checkChannel(3, "max"))
+                    MainV2.comPort.MAV.cs.rcoverridech3 += (ushort)(100);
+            }
+            if (e.KeyCode == (Keys)System.Enum.Parse(typeof(Keys), decelerateBox.Text, true))
+            {
+                if (MainV2.comPort.MAV.cs.rcoverridech3 > checkChannel(3, "min"))
+                    MainV2.comPort.MAV.cs.rcoverridech3 -= (ushort)(100);
+            }
+            if (e.KeyCode == (Keys)System.Enum.Parse(typeof(Keys), steerLeftBox.Text, true))
+            {
+                if (Control.ModifierKeys == Keys.Control)
+                    MainV2.comPort.MAV.cs.rcoverridech4 = checkChannel(4, "min");
+                else
+                    MainV2.comPort.MAV.cs.rcoverridech4 = (ushort)(checkChannel(4, "trim") - Convert.ToUInt16(yawTrackBar.Value));
+            }
+            if (e.KeyCode == (Keys)System.Enum.Parse(typeof(Keys), steerRightBox.Text, true))
+            {
+                if (Control.ModifierKeys == Keys.Control)
+                    MainV2.comPort.MAV.cs.rcoverridech4 = checkChannel(4, "max");
+                else
+                    MainV2.comPort.MAV.cs.rcoverridech4 = (ushort)(checkChannel(4, "trim") + Convert.ToUInt16(yawTrackBar.Value));
+            }
+
+        }
+
+    }
+}

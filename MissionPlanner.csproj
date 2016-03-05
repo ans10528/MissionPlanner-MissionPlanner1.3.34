@@ -442,6 +442,7 @@
     <Compile Include="GeoRef\SingleLocation.cs" />
     <Compile Include="GeoRef\VehicleLocation.cs" />
     <Compile Include="HIL\QuadCopter.cs" />
+    <Content Include="ImageGuide\Class1.txt" />
     <Compile Include="Joystick\Joy_Do_Repeat_Servo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -646,11 +647,11 @@
       <DependentUpon>FollowPathControl.cs</DependentUpon>
     </Compile>
     <Compile Include="System.cs" />
-    <Compile Include="TargetPosSocket.cs" />
-    <Compile Include="TargetPosSocketForm.cs">
+    <Compile Include="ImageGuide\TargetPosSocket.cs" />
+    <Compile Include="ImageGuide\TargetPosSocketForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TargetPosSocketForm.Designer.cs">
+    <Compile Include="ImageGuide\TargetPosSocketForm.Designer.cs">
       <DependentUpon>TargetPosSocketForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Airports.cs" />
@@ -1307,7 +1308,7 @@
       <LastGenOutput>Strings.zh-Hans.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="TargetPosSocketForm.resx">
+    <EmbeddedResource Include="ImageGuide\TargetPosSocketForm.resx">
       <DependentUpon>TargetPosSocketForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\DroneApi\UI\VehicleSelection.resx">
